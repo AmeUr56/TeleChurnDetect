@@ -1,5 +1,5 @@
 # Project
-**ChurnDetect**: Predicting Customer Churn for Telecommunication Companies
+**TeleChurnDetect**: Predicting Customer Churn for Telecommunication Companies
 
 # Purpose
 The goal is to build a **machine learning model** to predict **customer churn**, enabling businesses to retain customers and reduce revenue loss.
