@@ -29,7 +29,7 @@ def load_data(data):
        'PhoneService', 'MultipleLines', 'InternetService', 'OnlineSecurity',
        'OnlineBackup', 'DeviceProtection', 'TechSupport', 'StreamingTV',
        'StreamingMovies', 'Contract', 'PaperlessBilling', 'PaymentMethod',
-       'MonthlyCharges', 'TotalCharges', 'Churn'])
+       'MonthlyCharges', 'TotalCharges'])
     
     pipeline_logger.INFO("Data Loaded Succefuly")
 
@@ -63,7 +63,7 @@ def feature_engineering(org_data):
     'PhoneService', 'MultipleLines', 'InternetService', 'OnlineSecurity',
     'OnlineBackup', 'DeviceProtection', 'TechSupport', 'StreamingTV',
     'StreamingMovies', 'Contract', 'PaperlessBilling', 'PaymentMethod',
-    'MonthlyCharges', 'TotalCharges', 'Churn'])
+    'MonthlyCharges', 'TotalCharges'])
         
     data['TenureCategory'] = pd.cut(data['tenure'], bins=[-1,3,12,np.inf],labels=["Recent", "Established", "Loyal"]) 
     data['Tenure_X_MonthlyCharges'] = data['tenure'] * data['MonthlyCharges']
