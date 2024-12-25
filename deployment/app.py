@@ -23,32 +23,46 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom HTML/CSS for Columns Border 
+# Custom HTML/CSS for Colums borders
 st.markdown("""
     <style>
-        /* Styling for columns to have subtle borders with rounded corners */
-        .stColumn {
-            border: 1px solid #e0e0e0;  /* Light gray border for a modern look */
-            border-radius: 8px;  /* Rounded corners */
-            padding: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow for a modern effect */
-            background-color: #fff;  /* White background */
-        }
-        
-        /* Styling for rows to have subtle borders as well */
-        .stBlock {
+        /* Common styling for all themes */
+        .stColumn, .stBlock {
             border: 1px solid #e0e0e0;
             border-radius: 8px;
             padding: 10px;
             margin-top: 10px;
-            background-color: #fff;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
         }
-        
-        /* Hover effect to make it interactive */
-        .stColumn:hover, .stBlock:hover {
-            border-color:rgb(16, 20, 16); /* Change border color to green on hover */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow on hover */
+
+        /* Light Theme Specific Styles */
+        [data-theme="light"] .stColumn, [data-theme="light"] .stBlock {
+            background-color: #fff;
+            border-color: #e0e0e0;
+        }
+
+        [data-theme="light"] .stColumn:hover, [data-theme="light"] .stBlock:hover {
+            border-color: rgb(16, 20, 16);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Dark Theme Specific Styles */
+        [data-theme="dark"] .stColumn, [data-theme="dark"] .stBlock {
+            background-color: #2b2b2b;
+            border-color: #4f4f4f;
+        }
+
+        [data-theme="dark"] .stColumn:hover, [data-theme="dark"] .stBlock:hover {
+            border-color: rgb(0, 255, 0);
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Ensure that all elements have proper borders and shadows on Streamlit's default theme */
+        .stContainer, .stApp {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 10px;
         }
     </style>
 """, unsafe_allow_html=True)
