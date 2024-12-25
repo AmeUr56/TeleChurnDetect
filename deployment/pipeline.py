@@ -4,7 +4,9 @@ from joblib import load
 import numpy as np
 
 import logging
+from pathlib import Path
 
+main_path = Path(__file__).parent.parent
 # Setup Logging
 # Creating Logger
 pipeline_logger = logging.getLogger("pipeline_logger")
@@ -42,8 +44,8 @@ def load_data(data):
 
 mode_features = ["gender","SeniorCitizen","Partner","Dependents","PhoneService","MultipleLines","InternetService","OnlineSecurity","OnlineBackup","DeviceProtection","TechSupport","StreamingTV","StreamingMovies","Contract","PaperlessBilling","PaymentMethod"]
 mean_features = ["tenure","MonthlyCharges","TotalCharges"]
-mode_imputer = load("../pipelines/mode_imputer.joblib")
-mean_imputer = load("../pipelines/mean_imputer.joblib")
+mode_imputer = load(main_path / "pipelines/mode_imputer.joblib")
+mean_imputer = load(main_path / "pipelines/mean_imputer.joblib")
 #@task
 def clean_data(org_data):
     data = org_data.copy()
@@ -84,8 +86,8 @@ def feature_engineering(org_data):
 
 ordinal_features = ["SeniorCitizen","Partner","Dependents","PhoneService","MultipleLines","InternetService","OnlineSecurity","OnlineBackup","DeviceProtection","TechSupport","StreamingTV","StreamingMovies","Contract","PaperlessBilling","TenureCategory","HighSpender","AutomaticPayment","AllServicesActivated","TeleServicesActivated","Connected"]
 nominal_features = ["gender","PaymentMethod"]
-ord_enc = load("../pipelines/ord_enc.joblib")
-one_hot_enc = load("../pipelines/one_hot_enc.joblib")
+ord_enc = load(main_path / "pipelines/ord_enc.joblib")
+one_hot_enc = load(main_path / "pipelines/one_hot_enc.joblib")
 #@task
 def encoding_data(org_data):
     data = org_data.copy()
@@ -101,7 +103,7 @@ def encoding_data(org_data):
     return pd.concat([data,one_hot_data],axis=1).drop(nominal_features,axis=1)
 
 num_features = ["tenure","MonthlyCharges","TotalCharges","MonthlyChargesRatio","Tenure_X_MonthlyCharges","SqrtTotalCharges","SqrtMonthlyCharges"]
-scaler = load("../pipelines/scaler.joblib")
+scaler = load(main_path / "pipelines/scaler.joblib")
 #@task
 def scaling_data(data):
     data[num_features] = scaler.transform(data[num_features])

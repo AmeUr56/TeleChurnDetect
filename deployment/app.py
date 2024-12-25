@@ -5,8 +5,11 @@ from numpy import array
 
 from pipeline import pipeline
 from joblib import load
+from pathlib import Path
 
-model = load("../models/finetuned/voting_clf.joblib") 
+main_path = Path(__file__).parent.parent
+model = load(main_path / "models/finetuned/voting_clf.joblib")
+
 linkedin_profile_badge = """
 <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
 <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="VERTICAL" data-vanity="ameur-b-25a155247" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://dz.linkedin.com/in/ameur-b-25a155247?trk=profile-badge">Ameur B.</a></div>
